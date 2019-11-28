@@ -34,7 +34,8 @@ class Config(object):
 
     # mode
     self.mode = 'train'  # either "train" or "eval"
-    self.task_names = ['chunk']  # list of tasks this model will learn
+#     self.task_names = ['chunk']  # list of tasks this model will learn
+    self.task_names = ['ner']
                                  # more than one trains a multi-task model
     self.is_semisup = True  # whether to use CVT or train purely supervised
     self.for_preprocessing = False  # is this for the preprocessing script
@@ -93,7 +94,7 @@ class Config(object):
     # training
     self.print_every = 25  # how often to print out training progress
 #     self.eval_dev_every = 500  # how often to evaluate on the dev set
-    self.eval_dev_every = 5000  # how often to evaluate on the dev set
+    self.eval_dev_every = 1000  # how often to evaluate on the dev set
     self.eval_train_every = 2000  # how often to evaluate on the train set
     self.save_model_every = 1000  # how often to checkpoint the model
 

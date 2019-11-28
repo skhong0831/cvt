@@ -105,7 +105,9 @@ class Trainer(object):
   def _evaluate_task(self, sess, task, summary_writer, train_set):
     scorer = task.get_scorer()
     data = task.train_set if train_set else task.val_set
+    print("Test batch size = ", self._config.test_batch_size)
     for i, mb in enumerate(data.get_minibatches(self._config.test_batch_size)):
+      print(i, mb.size)
       loss, batch_preds = self._model.test(sess, mb)
       scorer.update(mb.examples, batch_preds, loss)
 
