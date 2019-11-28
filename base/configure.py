@@ -41,8 +41,10 @@ class Config(object):
 
     # embeddings
 #     self.pretrained_embeddings = 'wikipedia-pubmed-and-PMC-w2v.bin'
-    self.pretrained_embeddings = 'glove.6B.300d.txt'  # which pretrained
+#     self.pretrained_embeddings = 'glove.6B.300d.txt'  # which pretrained
                                                       # embeddings to use
+    self.pretrained_embeddings = 'wikipedia-pubmed-and-PMC-w2v.bin'
+    
     self.word_embedding_size = 300  # size of each word embedding
 
     # encoder
@@ -83,13 +85,15 @@ class Config(object):
     self.max_sentence_length = 100  # maximum length of unlabeled sentences
     self.max_word_length = 20  # maximum length of words for char cnn
     self.train_batch_size = 64  # train batch size
-    self.test_batch_size = 64  # test batch size
+#     self.test_batch_size = 64  # test batch size
+    self.test_batch_size = 5000  # test batch size
     self.buckets = [(0, 15), (15, 40), (40, 1000)]  # buckets for binning
                                                     # sentences by length
 
     # training
     self.print_every = 25  # how often to print out training progress
-    self.eval_dev_every = 500  # how often to evaluate on the dev set
+#     self.eval_dev_every = 500  # how often to evaluate on the dev set
+    self.eval_dev_every = 5000  # how often to evaluate on the dev set
     self.eval_train_every = 2000  # how often to evaluate on the train set
     self.save_model_every = 1000  # how often to checkpoint the model
 
