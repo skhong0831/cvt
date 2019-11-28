@@ -60,9 +60,13 @@ class UnlabeledDataReader(object):
     while True:
       print("List of Directory = ")
       print(tf.gfile.ListDirectory(self.config.unsupervised_data))
+#       file_ids_and_names = sorted([
+#           (int(fname.split('-')[1].replace('.txt', '')), fname) for fname in
+#           tf.gfile.ListDirectory(self.config.unsupervised_data)])
       file_ids_and_names = sorted([
-          (int(fname.split('-')[1].replace('.txt', '')), fname) for fname in
+          (int(fname.replace('.txt', '')), fname) for fname in
           tf.gfile.ListDirectory(self.config.unsupervised_data)])
+
       for fid, fname in file_ids_and_names:
         if fid < self.current_file:
           continue
