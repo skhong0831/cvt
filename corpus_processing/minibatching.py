@@ -89,8 +89,6 @@ class Dataset(object):
     cumulative_weight = 0.0
     id_batches = []
     for _, ids in by_bucket.iteritems():
-      print("IDS:")
-      print(ids)
       ids = np.array(ids)
       np.random.shuffle(ids)
       curr_batch, curr_weight = [], 0.0
@@ -113,7 +111,9 @@ class Dataset(object):
         yield mb
 
   def _make_minibatch(self, ids):
+    print("IDS:", ids)
     examples = [self.examples[i] for i in ids]
+    print("Examples=", examples)
     sentence_lengths = np.array([len(e.words) for e in examples])
     max_word_length = min(max(max(len(word) for word in e.chars)
                               for e in examples),
