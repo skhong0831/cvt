@@ -114,8 +114,11 @@ class Config(object):
     self.unsupervised_data = join(
         self.data_dir,
         'BC5CDR-disease-IOBES')
+
+    self.raw_data_topdir = join(self.data_dir, 'raw_data')
+
     self.pretrained_embeddings_file = join(
-        './embedding',
+        self.raw_data_topdir, 'pretrained_embeddings',
         self.pretrained_embeddings)
 
     self.preprocessed_data_topdir = join(self.data_dir, 'preprocessed_data')

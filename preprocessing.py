@@ -43,7 +43,8 @@ def main(data_dir='./data'):
     embeddings.PretrainedEmbeddingLoader(config).build()
 
   utils.log("CONSTRUCTING DEV SETS")
-  for task_name in ["chunk"]:
+#   for task_name in ["chunk"]:
+  for task_name in ["ner"]:
     # chunking does not come with a provided dev split, so create one by
     # selecting a random subset of the data
     config = configure.Config(data_dir=data_dir,
@@ -56,7 +57,8 @@ def main(data_dir='./data'):
     write_sentences(task_data_dir + 'dev.txt', train_sentences[:1500])
 
   utils.log("WRITING LABEL MAPPINGS")
-  for task_name in ["chunk"]:
+#   for task_name in ["chunk"]:
+  for task_name in ["ner"]:
     for i, label_encoding in enumerate(["BIOES"]):
       config = configure.Config(data_dir=data_dir,
                                 for_preprocessing=True,
@@ -73,7 +75,6 @@ def main(data_dir='./data'):
       utils.log(" ", len(loader.label_mapping), "classes")
       utils.write_cpickle(loader.label_mapping,
                           loader.label_mapping_path)
-
 
 def write_sentences(fname, sentences):
   with open(fname, 'w') as f:
