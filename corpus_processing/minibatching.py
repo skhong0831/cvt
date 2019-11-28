@@ -89,6 +89,8 @@ class Dataset(object):
     cumulative_weight = 0.0
     id_batches = []
     for _, ids in by_bucket.iteritems():
+      print("IDS:")
+      print(ids)
       ids = np.array(ids)
       np.random.shuffle(ids)
       curr_batch, curr_weight = [], 0.0
