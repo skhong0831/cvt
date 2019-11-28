@@ -105,17 +105,16 @@ class Config(object):
                                          # test set
 
     # locations of various data files
-#     self.raw_data_topdir = join(self.data_dir, 'raw_data')
+    self.raw_data_topdir = join(self.data_dir, 'raw_data')
 #     self.unsupervised_data = join(
 #         self.raw_data_topdir,
 #         'unlabeled_data',
 #         '1-billion-word-language-modeling-benchmark-r13output',
 #         'training-monolingual.tokenized.shuffled')
     self.unsupervised_data = join(
-        self.data_dir,
-        'BC5CDR-disease-IOBES')
-
-    self.raw_data_topdir = join(self.data_dir, 'raw_data')
+        self.raw_data_topdir,
+        'unlabeled_data',
+        'ner')
 
     self.pretrained_embeddings_file = join(
         self.raw_data_topdir, 'pretrained_embeddings',
