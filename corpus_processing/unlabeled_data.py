@@ -64,7 +64,7 @@ class UnlabeledDataReader(object):
 #           (int(fname.split('-')[1].replace('.txt', '')), fname) for fname in
 #           tf.gfile.ListDirectory(self.config.unsupervised_data)])
       file_ids_and_names = sorted([
-          (int(fname.replace('.txt', '')), fname) for fname in
+          (0, fname) for fname in
           tf.gfile.ListDirectory(self.config.unsupervised_data)])
 
       for fid, fname in file_ids_and_names:
