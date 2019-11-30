@@ -186,9 +186,9 @@ class PretrainedEmbeddingLoader(object):
 #     utils.log('writing vectors!')
 #     self._write()
 # 
-def _write(self):
-  utils.write_cpickle(np.vstack(self.vectors), self.config.word_embeddings)
-  utils.write_cpickle(self.vocabulary, self.config.word_vocabulary)
+  def _write(self):
+    utils.write_cpickle(np.vstack(self.vectors), self.config.word_embeddings)
+    utils.write_cpickle(self.vocabulary, self.config.word_vocabulary)
 
 
 def normalize_chars(w):
