@@ -27,8 +27,10 @@ from model import shared_inputs
 
 class Inference(object):
   def __init__(self, config, inputs, pretrained_embeddings, tasks):
+    print('2.1')
     with tf.variable_scope('encoder'):
       self.encoder = encoder.Encoder(config, inputs, pretrained_embeddings)
+      print('2.2')
     self.modules = {}
     for task in tasks:
       with tf.variable_scope(task.name):
