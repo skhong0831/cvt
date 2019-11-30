@@ -113,7 +113,7 @@ class PretrainedEmbeddingLoader(object):
       self.vectors.append(np.zeros(self.vector_size, dtype='float32'))
 
   def build(self):
-    utils.log('loading pretrained embeddings from', self.config.pretrained_embeddings_file)
+    utils.log('loading pretrained embeddings from', self.config.pretrained_embeddings)
     for special in SPECIAL_TOKENS:
       self._add_vector(special)
     for extra in _EXTRA_WORDS:

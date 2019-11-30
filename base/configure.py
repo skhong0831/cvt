@@ -121,13 +121,16 @@ class Config(object):
         'unlabeled_data',
         'ner')
 
-    self.pretrained_embeddings_file = join(
-        self.raw_data_topdir, 'pretrained_embeddings',
-        self.pretrained_embeddings)
+#     self.pretrained_embeddings_file = join(
+#         self.raw_data_topdir, 'pretrained_embeddings',
+#         self.pretrained_embeddings)
 
     self.preprocessed_data_topdir = join(self.data_dir, 'preprocessed_data')
+#     self.embeddings_dir = join(self.preprocessed_data_topdir,
+#                                self.pretrained_embeddings.rsplit('.', 1)[0])
     self.embeddings_dir = join(self.preprocessed_data_topdir,
-                               self.pretrained_embeddings.rsplit('.', 1)[0])
+                               'bioner')
+
     self.word_vocabulary = join(self.embeddings_dir, 'word_vocabulary.pkl')
     self.word_embeddings = join(self.embeddings_dir, 'word_embeddings.pkl')
 
