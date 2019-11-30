@@ -35,11 +35,17 @@ def main(data_dir='./data'):
   random.seed(0)
 
   utils.log("BUILDING WORD VOCABULARY/EMBEDDINGS")
-  for pretrained in ['glove.6B.300d.txt']:
+#   for pretrained in ['glove.6B.300d.txt']:
+#     config = configure.Config(data_dir=data_dir,
+#                               for_preprocessing=True,
+#                               pretrained_embeddings=pretrained,
+#                               word_embedding_size=300)
+  for pretrained in ['./data/w2v/wikipedia-pubmed-and-PMC-w2v.bin']:
     config = configure.Config(data_dir=data_dir,
                               for_preprocessing=True,
                               pretrained_embeddings=pretrained,
-                              word_embedding_size=300)
+                              word_embedding_size=200)
+
     embeddings.PretrainedEmbeddingLoader(config).build()
 
 #   utils.log("CONSTRUCTING DEV SETS")
