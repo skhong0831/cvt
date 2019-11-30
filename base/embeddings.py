@@ -121,12 +121,12 @@ class PretrainedEmbeddingLoader(object):
  
     w2v_model = gensim.models.KeyedVectors.load_word2vec_format(self.config.pretrained_embeddings, binary=True)
     word2vec = w2v_model.wv
-    print(word2vec.keys())
-#     print(word2vec.vocabulary)
+    vocabulary = word2vec.vocab.keys()
+    for w in vocabulary:
+      self.vocabulary[w] = len(self.vectors)
+      self.vectors.append(word2vec[w])    
     del w2v_model
     
-    sys.exit()
-
     utils.log('writing vectors!')
     self._write()
 
@@ -186,9 +186,9 @@ class PretrainedEmbeddingLoader(object):
 #     utils.log('writing vectors!')
 #     self._write()
 # 
-#   def _write(self):
-#     utils.write_cpickle(np.vstack(self.vectors), self.config.word_embeddings)
-#     utils.write_cpickle(self.vocabulary, self.config.word_vocabulary)
+def _write(self):
+  utils.write_cpickle(np.vstack(self.vectors), self.config.word_embeddings)
+  utils.write_cpickle(self.vocabulary, self.config.word_vocabulary)
 
 
 def normalize_chars(w):
