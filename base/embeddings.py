@@ -127,6 +127,7 @@ class PretrainedEmbeddingLoader(object):
       self.vectors.append(word2vec[w])    
     del w2v_model
     
+    print("Length of Word Vectors = ", len(self.vectors))
     utils.log('writing vectors!')
     self._write()
 
