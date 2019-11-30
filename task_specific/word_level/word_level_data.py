@@ -30,9 +30,6 @@ from corpus_processing import example
 from corpus_processing import minibatching
 from task_specific.word_level import tagging_utils
 
-train_sentences = word_level_data.TaggedDataLoader(
-        config, task_name, False).get_labeled_sentences("train")
-        
 class TaggedDataLoader(object):
   def __init__(self, config, name, is_token_level):
     self._config = config
