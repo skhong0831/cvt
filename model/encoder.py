@@ -20,6 +20,7 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
+import numpy as np
 from base import embeddings
 from model import model_helpers
 
@@ -41,7 +42,7 @@ class Encoder(object):
       print('word_embedding_matrix')
 #       word_embedding_matrix = tf.get_variable(
 #           'word_embedding_matrix', initializer=pretrained_embeddings)
-      word_embedding_matrix = tf.get_variable(name='word_embedding_matrix', shape=[400000,200], 
+      word_embedding_matrix = tf.get_variable(name='word_embedding_matrix', shape=[5443688,200], 
                                        initializer=tf.constant_initializer(np.array(pretrained_embeddings)), trainable=False)
       print('word_embedding_lookup_take')
       word_embeddings = tf.nn.embedding_lookup(
