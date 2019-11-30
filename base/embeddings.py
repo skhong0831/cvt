@@ -26,6 +26,7 @@ import re
 import numpy as np
 import gensim
 import tensorflow as tf
+import sys
 
 from base import utils
 
@@ -111,16 +112,22 @@ class PretrainedEmbeddingLoader(object):
       self.vocabulary[w] = len(self.vectors)
       self.vectors.append(np.zeros(self.vector_size, dtype='float32'))
 
-#   def build(self):
-#     utils.log('loading pretrained embeddings from',
-#               self.config.pretrained_embeddings_file)
-#     for special in SPECIAL_TOKENS:
-#       self._add_vector(special)
-#     for extra in _EXTRA_WORDS:
-#       self._add_vector(extra)
-# 
-#     w2v_model = gensim.models.KeyedVectors.load_word2vec_format(DatasetPreprosessed.W2V_PATH, binary=True)
-#     word2vec = w2v_model.wv
+  def build(self):
+    utils.log('loading pretrained embeddings from', self.config.pretrained_embeddings_file)
+    for special in SPECIAL_TOKENS:
+      self._add_vector(special)
+    for extra in _EXTRA_WORDS:
+      self._add_vector(extra)
+ 
+    w2v_model = gensim.models.KeyedVectors.load_word2vec_format(DatasetPreprosessed.W2V_PATH, binary=True)
+    word2vec = w2v_model.wv
+    
+    print(word2vec)
+    
+    sys.exit()
+
+    utils.log('writing vectors!')
+    self._write()
 
 #     with tf.gfile.GFile(
 #         self.config.pretrained_embeddings_file, 'r') as f:
@@ -154,8 +161,7 @@ class PretrainedEmbeddingLoader(object):
       self._add_vector(special)
     for extra in _EXTRA_WORDS:
       self._add_vector(extra)
-    with tf.gfile.GFile(
-        self.config.pretrained_embeddings_file, 'r') as f:
+    with tf.gfile.GFile(self.config.pretrained_embeddings_file, 'r') as f:
       for i, line in enumerate(f):
         if i % 10000 == 0:
           utils.log('on line', i)
