@@ -49,6 +49,7 @@ class Trainer(object):
     start_time = time.time()
     unsupervised_loss_total, unsupervised_loss_count = 0, 0
     supervised_loss_total, supervised_loss_count = 0, 0
+    print('train')
     for mb in self._get_training_mbs(progress.unlabeled_data_reader):
       if mb.task_name != 'unlabeled':
         loss = self._model.train_labeled(sess, mb)

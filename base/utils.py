@@ -53,6 +53,7 @@ def write_cpickle(o, path):
   tf.gfile.MakeDirs(path.rsplit('/', 1)[0])
   with tf.gfile.GFile(path, 'w') as f:
     cPickle.dump(o, f, -1)
+#     cPickle.dump(o, f, protocol = cPickle.HIGHEST_PROTOCOL)
 
 
 def log(*args):
