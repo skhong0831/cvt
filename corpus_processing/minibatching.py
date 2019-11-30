@@ -111,9 +111,9 @@ class Dataset(object):
         yield mb
 
   def _make_minibatch(self, ids):
-    print("IDS:", ids)
+#     print("IDS:", ids)
     examples = [self.examples[i] for i in ids]
-    print("Examples=", examples)
+#     print("Examples=", examples)
     sentence_lengths = np.array([len(e.words) for e in examples])
     max_word_length = min(max(max(len(word) for word in e.chars)
                               for e in examples),
