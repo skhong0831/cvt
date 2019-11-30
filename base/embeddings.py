@@ -119,7 +119,7 @@ class PretrainedEmbeddingLoader(object):
     for extra in _EXTRA_WORDS:
       self._add_vector(extra)
  
-    w2v_model = gensim.models.KeyedVectors.load_word2vec_format(DatasetPreprosessed.W2V_PATH, binary=True)
+    w2v_model = gensim.models.KeyedVectors.load_word2vec_format(self.config.pretrained_embeddings, binary=True)
     word2vec = w2v_model.wv
     
     print(word2vec)

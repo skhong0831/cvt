@@ -42,9 +42,9 @@ class Config(object):
 
     # embeddings
 #     self.pretrained_embeddings = 'wikipedia-pubmed-and-PMC-w2v.bin'
-    self.pretrained_embeddings = 'glove.6B.300d.txt'  # which pretrained
+#     self.pretrained_embeddings = 'glove.6B.300d.txt'  # which pretrained
                                                       # embeddings to use
-#     self.pretrained_embeddings = 'wikipedia-pubmed-and-PMC-w2v.bin'
+    self.pretrained_embeddings = './data/w2v/wikipedia-pubmed-and-PMC-w2v.bin'
     
     self.word_embedding_size = 300  # size of each word embedding
 
