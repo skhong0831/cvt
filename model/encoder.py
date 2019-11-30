@@ -37,10 +37,13 @@ class Encoder(object):
 
   def _get_word_reprs(self, pretrained_embeddings):
     with tf.variable_scope('word_embeddings'):
+      print('word_embedding_matrix')
       word_embedding_matrix = tf.get_variable(
           'word_embedding_matrix', initializer=pretrained_embeddings)
+      print('word_embedding_lookup_take')
       word_embeddings = tf.nn.embedding_lookup(
           word_embedding_matrix, self._inputs.words)
+      print('embedding dropout')
       word_embeddings = tf.nn.dropout(word_embeddings, self._inputs.keep_prob)
       word_embeddings *= tf.get_variable('emb_scale', initializer=1.0)
 
