@@ -42,19 +42,19 @@ def main(data_dir='./data'):
                               word_embedding_size=300)
     embeddings.PretrainedEmbeddingLoader(config).build()
 
-  utils.log("CONSTRUCTING DEV SETS")
-#   for task_name in ["chunk"]:
-  for task_name in ["ner"]:
-    # chunking does not come with a provided dev split, so create one by
-    # selecting a random subset of the data
-    config = configure.Config(data_dir=data_dir,
-                              for_preprocessing=True)
-    task_data_dir = os.path.join(config.raw_data_topdir, task_name) + '/'
-    train_sentences = word_level_data.TaggedDataLoader(
-        config, task_name, False).get_labeled_sentences("train")
-    random.shuffle(train_sentences)
-    write_sentences(task_data_dir + 'train_subset.txt', train_sentences[1500:])
-    write_sentences(task_data_dir + 'dev.txt', train_sentences[:1500])
+#   utils.log("CONSTRUCTING DEV SETS")
+# #   for task_name in ["chunk"]:
+#   for task_name in ["ner"]:
+#     # chunking does not come with a provided dev split, so create one by
+#     # selecting a random subset of the data
+#     config = configure.Config(data_dir=data_dir,
+#                               for_preprocessing=True)
+#     task_data_dir = os.path.join(config.raw_data_topdir, task_name) + '/'
+#     train_sentences = word_level_data.TaggedDataLoader(
+#         config, task_name, False).get_labeled_sentences("train")
+#     random.shuffle(train_sentences)
+#     write_sentences(task_data_dir + 'train_subset.txt', train_sentences[1500:])
+#     write_sentences(task_data_dir + 'dev.txt', train_sentences[:1500])
 
   utils.log("WRITING LABEL MAPPINGS")
 #   for task_name in ["chunk"]:
