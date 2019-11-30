@@ -121,7 +121,8 @@ class PretrainedEmbeddingLoader(object):
  
     w2v_model = gensim.models.KeyedVectors.load_word2vec_format(self.config.pretrained_embeddings, binary=True)
     word2vec = w2v_model.wv
-    print(word2vec.vocabulary)
+    print(word2vec.keys())
+#     print(word2vec.vocabulary)
     del w2v_model
     
     sys.exit()
