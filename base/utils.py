@@ -41,7 +41,7 @@ def load_cpickle(path, memoized=True):
 
 
 def _load_cpickle(path):
-  with tf.gfile.GFile(path, 'r') as f:
+  with tf.gfile.GFile(path, 'rb') as f:
 #     return cPickle.load(f)
     return pickle.load(f)
 
@@ -53,7 +53,7 @@ def _load_cpickle_memoize(path):
 
 def write_cpickle(o, path):
   tf.gfile.MakeDirs(path.rsplit('/', 1)[0])
-  with tf.gfile.GFile(path, 'w') as f:
+  with tf.gfile.GFile(path, 'wb') as f:
 #     cPickle.dump(o, f, -1)
     pickle.dump(o, f, -1)
 #     cPickle.dump(o, f, protocol = cPickle.HIGHEST_PROTOCOL)
