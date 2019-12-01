@@ -88,7 +88,8 @@ class Dataset(object):
     weight_per_batch = minibatch_size * total_weight / len(self.examples)
     cumulative_weight = 0.0
     id_batches = []
-    for _, ids in by_bucket.iteritems():
+#     for _, ids in by_bucket.iteritems():
+    for _, ids in by_bucket.items():
       ids = np.array(ids)
       np.random.shuffle(ids)
       curr_batch, curr_weight = [], 0.0
