@@ -44,9 +44,10 @@ class Config(object):
 #     self.pretrained_embeddings = 'wikipedia-pubmed-and-PMC-w2v.bin'
 #     self.pretrained_embeddings = 'glove.6B.300d.txt'  # which pretrained
                                                       # embeddings to use
-    self.pretrained_embeddings = './data/w2v/wikipedia-pubmed-and-PMC-w2v.bin'
+#     self.pretrained_embeddings = './data/w2v/wikipedia-pubmed-and-PMC-w2v.bin'
+    self.pretrained_embeddings = './data/w2v/PubMed-w2v.bin'
 
-    self.word_embedding_size = 300  # size of each word embedding
+    self.word_embedding_size = 200  # size of each word embedding
 
     # encoder
     self.use_chars = True  # whether to include a character-level cnn
