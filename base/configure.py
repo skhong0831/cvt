@@ -52,8 +52,8 @@ class Config(object):
     # encoder
     self.use_chars = True  # whether to include a character-level cnn
     self.char_embedding_size = 50  # size of character embeddings
-    self.char_cnn_filter_widths = [2, 3, 4, 5]  # filter widths for the char cnn
-    self.char_cnn_n_filters = 200  # number of filters for each filter width
+    self.char_cnn_filter_widths = [2, 3, 4]  # filter widths for the char cnn
+    self.char_cnn_n_filters = 100  # number of filters for each filter width
     self.unidirectional_sizes = [1024]  # size of first Bi-LSTM
     self.bidirectional_sizes = [512]  # size of second Bi-LSTM
     self.projection_size = 512  # projections size for LSTMs and hidden layers

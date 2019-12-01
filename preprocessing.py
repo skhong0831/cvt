@@ -77,7 +77,7 @@ def main(data_dir='./data'):
           continue
         utils.log("WRITING LABEL MAPPING FOR", task_name.upper())
       else:
-        utils.log("  Writing label mapping for", task_name.upper(),
+        utils.log("Writing label mapping for", task_name.upper(),
                   label_encoding)
       utils.log(" ", len(loader.label_mapping), "classes")
       utils.write_cpickle(loader.label_mapping,
