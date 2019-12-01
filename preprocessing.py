@@ -40,7 +40,8 @@ def main(data_dir='./data'):
 #                               for_preprocessing=True,
 #                               pretrained_embeddings=pretrained,
 #                               word_embedding_size=300)
-  for pretrained in ['./data/w2v/wikipedia-pubmed-and-PMC-w2v.bin']:
+#   for pretrained in ['./data/w2v/wikipedia-pubmed-and-PMC-w2v.bin']:
+  for pretrained in ['./data/w2v/PubMed-w2v.bin']:
     config = configure.Config(data_dir=data_dir,
                               for_preprocessing=True,
                               pretrained_embeddings=pretrained,
