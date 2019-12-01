@@ -127,7 +127,7 @@ class Model(object):
                       feed_dict=self._create_feed_dict(mb, self._teacher,
                                                        False))
 #     for task_name, probs in result.iteritems():
-  for task_name, probs in result.items():
+    for task_name, probs in result.items():
       mb.teacher_predictions[task_name] = probs.astype('float16')
 
   def test(self, sess, mb):
