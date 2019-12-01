@@ -27,10 +27,8 @@ from model import shared_inputs
 
 class Inference(object):
   def __init__(self, config, inputs, pretrained_embeddings, tasks):
-    print('2.1')
     with tf.variable_scope('encoder'):
       self.encoder = encoder.Encoder(config, inputs, pretrained_embeddings)
-      print('2.2')
     self.modules = {}
     for task in tasks:
       with tf.variable_scope(task.name):
@@ -43,26 +41,21 @@ class Model(object):
     self._tasks = tasks
 
     self._global_step, self._optimizer = self._get_optimizer()
-    print('1')
     self._inputs = shared_inputs.Inputs(config)
-    print('2')
     with tf.variable_scope('model', reuse=tf.AUTO_REUSE) as scope:
       inference = Inference(config, self._inputs, pretrained_embeddings,
                             tasks)
       self._trainer = inference
       self._tester = inference
       self._teacher = inference
-      print('3')
       if config.ema_test or config.ema_teacher:
         ema = tf.train.ExponentialMovingAverage(config.ema_decay)
         model_vars = tf.get_collection("trainable_variables", "model")
         ema_op = ema.apply(model_vars)
         tf.add_to_collection(tf.GraphKeys.UPDATE_OPS, ema_op)
-        print('4')
         def ema_getter(getter, name, *args, **kwargs):
           var = getter(name, *args, **kwargs)
           return ema.average(var)
-        print('5')
         scope.set_custom_getter(ema_getter)
         inference_ema = Inference(
             config, self._inputs, pretrained_embeddings, tasks)
@@ -71,11 +64,9 @@ class Model(object):
         if config.ema_test:
           self._tester = inference_ema
 
-    print('6')
     self._unlabeled_loss = self._get_consistency_loss(tasks)
     self._unlabeled_train_op = self._get_train_op(self._unlabeled_loss)
     self._labeled_train_ops = {}
-    print('7')
     for task in self._tasks:
       task_loss = self._trainer.modules[task.name].supervised_loss
       self._labeled_train_ops[task.name] = self._get_train_op(task_loss)
@@ -126,7 +117,6 @@ class Model(object):
                        for task in self._tasks},
                       feed_dict=self._create_feed_dict(mb, self._teacher,
                                                        False))
-#     for task_name, probs in result.iteritems():
     for task_name, probs in result.items():
       mb.teacher_predictions[task_name] = probs.astype('float16')
 

@@ -49,10 +49,10 @@ class Task(object):
 
 
 class Tagging(Task):
-  def __init__(self, config, name, is_token_level=True):
+  def __init__(self, config, name, dataset, is_token_level=True):
     super(Tagging, self).__init__(
         config, name, word_level_data.TaggedDataLoader(
-            config, name, is_token_level))
+            config, name, is_token_level, dataset))
     self.n_classes = len(set(self.loader.label_mapping.values()))
     self.is_token_level = is_token_level
 
@@ -80,11 +80,11 @@ class DependencyParsing(Tagging):
         self.n_classes, (embeddings.get_punctuation_ids(self.config)))
 
 
-def get_task(config, name):
+def get_task(config, name, dataset):
   if name in ["ccg", "pos"]:
     return Tagging(config, name, True)
   elif name in ["chunk", "ner", "er"]:
-    return Tagging(config, name, False)
+    return Tagging(config, name, dataset, False)
   elif name == "depparse":
     return DependencyParsing(config, name)
   else:

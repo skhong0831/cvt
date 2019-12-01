@@ -20,7 +20,7 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
-
+import argparse
 from base import configure
 from base import utils
 from training import trainer
@@ -33,13 +33,19 @@ tf.app.flags.DEFINE_string('model_name', 'default_model',
                            'A name identifying the model being '
                            'trained/evaluated')
 
+def setup_parser():
+    parser = argparse.ArgumentParser('CVT')
+    parser.add_argument('--dataset', type=str, default='BC5CDR-chem-900')
+    
+    return parser
 
-def main():
+
+def main(args):
   utils.heading('SETUP')
   config = configure.Config(mode=FLAGS.mode, model_name=FLAGS.model_name)
   config.write()
   with tf.Graph().as_default() as graph:
-    model_trainer = trainer.Trainer(config)
+    model_trainer = trainer.Trainer(config, args.dataset)
     summary_writer = tf.summary.FileWriter(config.summaries_dir)
     checkpoints_saver = tf.train.Saver(max_to_keep=1)
     best_model_saver = tf.train.Saver(max_to_keep=1)
@@ -64,4 +70,6 @@ def main():
 
 
 if __name__ == '__main__':
-  main()
+  parser = setup_parser()
+  args = parser.parse_args()
+  main(args)

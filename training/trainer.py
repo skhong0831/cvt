@@ -30,9 +30,9 @@ from task_specific import task_definitions
 
 
 class Trainer(object):
-  def __init__(self, config):
+  def __init__(self, config, dataset):
     self._config = config
-    self.tasks = [task_definitions.get_task(self._config, task_name)
+    self.tasks = [task_definitions.get_task(self._config, task_name, dataset)
                   for task_name in self._config.task_names]
 
     utils.log('Loading Pretrained Embeddings')
