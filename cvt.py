@@ -32,20 +32,21 @@ tf.app.flags.DEFINE_string('mode', 'train', '"train" or "eval')
 tf.app.flags.DEFINE_string('model_name', 'default_model',
                            'A name identifying the model being '
                            'trained/evaluated')
+tf.app.flags.DEFINE_string('dataset', 'BC5CDR-chem-900')
 
-def setup_parser():
-    parser = argparse.ArgumentParser('CVT')
-    parser.add_argument('--dataset', type=str, default='BC5CDR-chem-900')
-    
-    return parser
+# def setup_parser():
+#     parser = argparse.ArgumentParser('CVT')
+#     parser.add_argument('--dataset', type=str, default='BC5CDR-chem-900')
+#     
+#     return parser
 
 
-def main(args):
+def main():
   utils.heading('SETUP')
   config = configure.Config(mode=FLAGS.mode, model_name=FLAGS.model_name)
   config.write()
   with tf.Graph().as_default() as graph:
-    model_trainer = trainer.Trainer(config, args.dataset)
+    model_trainer = trainer.Trainer(config, FLAGS.dataset)
     summary_writer = tf.summary.FileWriter(config.summaries_dir)
     checkpoints_saver = tf.train.Saver(max_to_keep=1)
     best_model_saver = tf.train.Saver(max_to_keep=1)
@@ -70,6 +71,7 @@ def main(args):
 
 
 if __name__ == '__main__':
-  parser = setup_parser()
-  args = parser.parse_args()
-  main(args)
+  main()
+#   parser = setup_parser()
+#   args = parser.parse_args()
+# main(args)
