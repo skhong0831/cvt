@@ -32,7 +32,7 @@ tf.app.flags.DEFINE_string('mode', 'train', '"train" or "eval')
 tf.app.flags.DEFINE_string('model_name', 'default_model',
                            'A name identifying the model being '
                            'trained/evaluated')
-tf.app.flags.DEFINE_string('dataset', 'BC5CDR-chem-900')
+tf.app.flags.DEFINE_string('dataset', 'BC5CDR-chem-900', 'dataset')
 
 # def setup_parser():
 #     parser = argparse.ArgumentParser('CVT')
