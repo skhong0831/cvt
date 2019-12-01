@@ -19,7 +19,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-# import cPickle
 import pickle
 import sys
 import tensorflow as tf
@@ -42,7 +41,6 @@ def load_cpickle(path, memoized=True):
 
 def _load_cpickle(path):
   with tf.gfile.GFile(path, 'rb') as f:
-#     return cPickle.load(f)
     return pickle.load(f)
 
 
@@ -54,9 +52,7 @@ def _load_cpickle_memoize(path):
 def write_cpickle(o, path):
   tf.gfile.MakeDirs(path.rsplit('/', 1)[0])
   with tf.gfile.GFile(path, 'wb') as f:
-#     cPickle.dump(o, f, -1)
     pickle.dump(o, f, -1)
-#     cPickle.dump(o, f, protocol = cPickle.HIGHEST_PROTOCOL)
 
 
 def log(*args):

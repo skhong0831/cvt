@@ -121,7 +121,8 @@ class Config(object):
     self.unsupervised_data = join(
         self.raw_data_topdir,
         'unlabeled_data',
-        'ner')
+        'ner',
+        'BC5CDR-chem-900')
 
 #     self.pretrained_embeddings_file = join(
 #         self.raw_data_topdir, 'pretrained_embeddings',

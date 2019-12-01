@@ -31,10 +31,14 @@ from corpus_processing import minibatching
 from task_specific.word_level import tagging_utils
 
 class TaggedDataLoader(object):
-  def __init__(self, config, name, is_token_level):
+  def __init__(self, config, name, is_token_level, dataset):
     self._config = config
     self._task_name = name
-    self._raw_data_path = os.path.join(config.raw_data_topdir, name)
+    if dataset.startswith('BC5CDR-chem-900'):
+      dataset_name = 'BC5CDR-chem-900'
+    elif dataset.startswith('BC5CDR-disease-900'):
+      dataset_name = 'BC5CDR-disease-900'
+    self._raw_data_path = os.path.join(config.raw_data_topdir, name, dataset_name)
     self._is_token_level = is_token_level
     self.label_mapping_path = os.path.join(
         config.preprocessed_data_topdir,

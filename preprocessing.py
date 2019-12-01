@@ -24,16 +24,24 @@ from __future__ import print_function
 
 import os
 import random
-
+import argparse
 from base import configure
 from base import embeddings
 from base import utils
 from task_specific.word_level import word_level_data
 
+def setup_parser():
+    parser = argparse.ArgumentParser('CVT')
+    parser.add_argument('--dataset', type=str, default='BC5CDR-chem-900')
+    parser.add_argument('--data_dir', type=str, default='./data')
+    
+    return parser
 
-def main(data_dir='./data'):
+
+def main(args):
   random.seed(0)
-
+  data_dir = args.data_dir
+  dataset = args.dataset
   utils.log("BUILDING WORD VOCABULARY/EMBEDDINGS")
 #   for pretrained in ['glove.6B.300d.txt']:
 #     config = configure.Config(data_dir=data_dir,
@@ -71,7 +79,7 @@ def main(data_dir='./data'):
                                 for_preprocessing=True,
                                 label_encoding=label_encoding)
       token_level = task_name in ["ccg", "pos", "depparse"]
-      loader = word_level_data.TaggedDataLoader(config, task_name, token_level)
+      loader = word_level_data.TaggedDataLoader(config, task_name, token_level, dataset)
       if token_level:
         if i != 0:
           continue
@@ -92,4 +100,6 @@ def write_sentences(fname, sentences):
 
 
 if __name__ == '__main__':
-  main()
+  parser = setup_parser()
+  args = parser.parse_args()
+  main(args)
