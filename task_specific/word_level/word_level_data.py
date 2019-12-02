@@ -38,6 +38,14 @@ class TaggedDataLoader(object):
       dataset_name = 'BC5CDR-chem-900'
     elif dataset.startswith('BC5CDR-disease-900'):
       dataset_name = 'BC5CDR-disease-900'
+    elif dataset.startswith('BC2GM-900'):
+      dataset_name = 'BC2GM-900'
+    elif dataset.startswith('BC5CDR-chem-1500'):
+      dataset_name = 'BC5CDR-chem-1500'
+    elif dataset.startswith('BC5CDR-disease-1500'):
+      dataset_name = 'BC5CDR-disease-1500'
+    elif dataset.startswith('BC2GM-1500'):
+      dataset_name = 'BC2GM-1500'
     self._raw_data_path = os.path.join(config.raw_data_topdir, name, dataset_name)
     self._is_token_level = is_token_level
     self.label_mapping_path = os.path.join(
