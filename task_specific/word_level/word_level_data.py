@@ -48,6 +48,8 @@ class TaggedDataLoader(object):
       dataset_name = 'BC2GM-1500'
     elif dataset.startswith('BC2GM-2500'):
       dataset_name = 'BC2GM-2500'
+    elif dataset.startswith('BC5CDR-chem-9100'):
+      dataset_name = 'BC5CDR-chem-9100'
 
     self._raw_data_path = os.path.join(config.raw_data_topdir, name, dataset_name)
     self._is_token_level = is_token_level
